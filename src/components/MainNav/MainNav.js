@@ -16,12 +16,12 @@ const MainNav = () => {
             alt="React Bootstrap logo"
           />
         </Navbar.Brand>
-        <Nav className="ml-auto font-weight-bold ">
-          <Nav.Link className="mr-3">Home</Nav.Link>
-          <Nav.Link className="mr-4">Donation</Nav.Link>
+        <Nav className="ml-auto font-weight-bold text-white">
+          <Nav.Link className="mr-3 text-dark">Home</Nav.Link>
+          <Nav.Link className="mr-4 text-dark">Donation</Nav.Link>
 
-          <Nav.Link className="mr-3">Events</Nav.Link>
-          <Nav.Link className="mr-3">Blog</Nav.Link>
+          <Nav.Link className="mr-3 text-dark">Events</Nav.Link>
+          <Nav.Link className="mr-3 text-dark">Blog</Nav.Link>
           <Button
             variant="primary"
             className="mainNav__register mr-3"

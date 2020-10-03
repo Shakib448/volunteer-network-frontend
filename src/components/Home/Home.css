@@ -1,3 +1,14 @@
+.home {
+  background-image: linear-gradient(
+      rgba(245, 246, 252, 0.72),
+      rgba(245, 246, 252, 0.72)
+    ),
+    url("../Resource/banner.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .home__form {
   padding: 200px 0;
 }
