@@ -5,8 +5,8 @@ import { Button, Container, Nav, Navbar } from "react-bootstrap";
 
 const MainNav = () => {
   return (
-    <Container>
-      <Navbar variant="light">
+    <Navbar variant="light" fixed="top">
+      <Container>
         <Navbar.Brand href="#home">
           <img
             src={logo}
@@ -36,11 +36,9 @@ const MainNav = () => {
           >
             Admin
           </Button>
-          {/* <Nav.Link className="mainNav__register">Register</Nav.Link> */}
-          {/* <Nav.Link className="mainNav__register">Admin</Nav.Link> */}
         </Nav>
-      </Navbar>
-    </Container>
+      </Container>
+    </Navbar>
   );
 };
 

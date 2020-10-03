@@ -1,0 +1,27 @@
+.home__form {
+  padding: 200px 0;
+}
+
+.home__button {
+  margin: 0 0 0 -20px;
+  padding: 15px 25px;
+}
+
+.home__input {
+  height: 56px;
+}
+
+.home__button:focus {
+  outline: 0;
+  box-shadow: none;
+}
+
+.home__input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.home__title {
+  text-transform: uppercase;
+  margin: 0 0 15px 0;
+}
