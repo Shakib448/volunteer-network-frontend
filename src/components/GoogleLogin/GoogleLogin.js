@@ -6,13 +6,13 @@ import "./GoogleLogin.css";
 import logo from "../Resource/logos/Group 1329.png";
 import firebaseConfig from "../FirebaseConfig/FirebaseConfig";
 import { userInformationData } from "../../App";
+import google from "../Resource/logos/google.png";
 
 firebase.initializeApp(firebaseConfig);
 
 const GoogleLogin = () => {
   const [userData, setUserData] = useContext(userInformationData);
 
-  console.log(userData);
   const providerGoogle = new firebase.auth.GoogleAuthProvider();
 
   const handleGoogleSignIn = async () => {
@@ -47,7 +47,19 @@ const GoogleLogin = () => {
                 <h1>Login With</h1>
               </Card.Title>
               <Card.Text>
-                <Button onClick={handleGoogleSignIn}>I ma google</Button>
+                <Button
+                  className="googleLogin__btn"
+                  onClick={handleGoogleSignIn}
+                >
+                  <img
+                    className="googleLogin__img"
+                    width="50"
+                    height="50"
+                    src={google}
+                    alt=""
+                  />
+                  Continue With Google
+                </Button>
               </Card.Text>
             </Card.Body>
           </Card>

@@ -2,10 +2,24 @@ import React, { useEffect, useState } from "react";
 import "./MainNav.css";
 import logo from "../Resource/logos/Group 1329.png";
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 const MainNav = () => {
   const [show, handleShow] = useState(false);
+
+  const location = useLocation();
+
+  const [test, setTest] = useState(location.pathname);
+
+  // console.log(test);
+
+  // const loc = (pathname) => {
+  //   if (pathname === "/google-sign-in") {
+  //     setTest(pathname);
+  //   }
+  // };
+
+  // console.log(test);
 
   useEffect(() => {
     window.addEventListener("scroll", () => {

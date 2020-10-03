@@ -12,3 +12,19 @@
 .google__formBody {
   padding: 100px 0;
 }
+
+.googleLogin__btn {
+  padding: 20px 35px;
+  margin: 25px 0;
+  background-color: transparent;
+  color: black;
+  font-size: 25px;
+  font-weight: 600;
+  border-radius: 50px;
+  border-color: black;
+  justify-content: space-between;
+}
+
+.googleLogin__img {
+  margin: 0 15px 0 0;
+}
