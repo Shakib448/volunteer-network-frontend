@@ -1,11 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./MainNav.css";
 import logo from "../Resource/logos/Group 1329.png";
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
 
 const MainNav = () => {
+  const [show, handleShow] = useState(false);
+
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 100) {
+        handleShow(true);
+      } else handleShow(false);
+    });
+    return () => {
+      window.addEventListener("scroll");
+    };
+  }, []);
   return (
-    <Navbar variant="light" fixed="top">
+    <Navbar
+      bg={`${show && "light"}`}
+      className={`mainNav  ${show && "mainNav__scroll"}`}
+      variant="light"
+      fixed="top"
+    >
       <Container>
         <Navbar.Brand href="#home">
           <img

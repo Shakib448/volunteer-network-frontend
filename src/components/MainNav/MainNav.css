@@ -5,3 +5,11 @@
 .mainNav__admin {
   padding: 0 25px;
 }
+
+.mainNav__scroll {
+  transition: 0.5s;
+}
+
+.mainNav {
+  transition: 0.5s;
+}
