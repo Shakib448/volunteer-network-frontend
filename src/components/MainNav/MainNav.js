@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./MainNav.css";
 import logo from "../Resource/logos/Group 1329.png";
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 
 const MainNav = () => {
   const [show, handleShow] = useState(false);
@@ -24,35 +25,39 @@ const MainNav = () => {
       fixed="top"
     >
       <Container>
-        <Navbar.Brand href="#home">
-          <img
-            src={logo}
-            width="150"
-            height="50"
-            className="d-inline-block align-top"
-            alt="React Bootstrap logo"
-          />
-        </Navbar.Brand>
+        <NavLink to="/">
+          <Navbar.Brand to="/">
+            <img
+              src={logo}
+              width="150"
+              height="50"
+              className="d-inline-block align-top"
+              alt="volunteer network logo"
+            />
+          </Navbar.Brand>
+        </NavLink>
         <Nav className="ml-auto font-weight-bold text-white">
-          <Nav.Link className="mr-3 text-dark">Home</Nav.Link>
-          <Nav.Link className="mr-4 text-dark">Donation</Nav.Link>
+          <Nav.Link>
+            <NavLink
+              className="mr-3 text-dark"
+              style={{ textDecoration: "none" }}
+              to="/"
+            >
+              Home
+            </NavLink>
+          </Nav.Link>
+          <Nav.Link className="mr-3 text-dark">Donation</Nav.Link>
 
           <Nav.Link className="mr-3 text-dark">Events</Nav.Link>
           <Nav.Link className="mr-3 text-dark">Blog</Nav.Link>
-          <Button
-            variant="primary"
-            className="mainNav__register mr-3"
-            type="submit"
-          >
-            Register
-          </Button>
-          <Button
-            variant="secondary"
-            className="mainNav__admin mr-3"
-            type="submit"
-          >
-            Admin
-          </Button>
+          <NavLink to="/google-sign-in">
+            <Button className=" mr-3">Register</Button>
+          </NavLink>
+          <NavLink to="/">
+            <Button variant="secondary" className=" mr-3" type="submit">
+              Admin
+            </Button>
+          </NavLink>
         </Nav>
       </Container>
     </Navbar>
