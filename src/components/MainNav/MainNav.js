@@ -6,21 +6,17 @@ import { NavLink, useLocation } from "react-router-dom";
 
 const MainNav = () => {
   const [show, handleShow] = useState(false);
+  // const location = useLocation();
 
-  const location = useLocation();
-
-  const [test, setTest] = useState(location.pathname);
-
-  // console.log(test);
+  // const [test, setTest] = useState(location.pathname);
 
   // const loc = (pathname) => {
-  //   if (pathname === "/google-sign-in") {
+  //   if (pathname === "/") {
   //     setTest(pathname);
   //   }
   // };
 
   // console.log(test);
-
   useEffect(() => {
     window.addEventListener("scroll", () => {
       if (window.scrollY > 100) {
