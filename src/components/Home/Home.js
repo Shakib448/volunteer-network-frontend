@@ -42,7 +42,7 @@ const Home = () => {
         <Container>
           <Row>
             {volunteerData.map(({ title, img, id, color }) => (
-              <Col md={3} key={id}>
+              <Col style={{ cursor: "pointer" }} md={3} key={id}>
                 <Card
                   style={{
                     width: "16rem",
