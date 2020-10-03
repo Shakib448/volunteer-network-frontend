@@ -1,9 +1,34 @@
-import React from "react";
-import { Card, Col, Container, Row } from "react-bootstrap";
+import React, { useContext } from "react";
+import { Button, Card, Col, Container, Row } from "react-bootstrap";
+import * as firebase from "firebase/app";
+import "firebase/auth";
 import "./GoogleLogin.css";
 import logo from "../Resource/logos/Group 1329.png";
+import firebaseConfig from "../FirebaseConfig/FirebaseConfig";
+import { userInformationData } from "../../App";
+
+firebase.initializeApp(firebaseConfig);
 
 const GoogleLogin = () => {
+  const [userData, setUserData] = useContext(userInformationData);
+
+  console.log(userData);
+  const providerGoogle = new firebase.auth.GoogleAuthProvider();
+
+  const handleGoogleSignIn = async () => {
+    try {
+      const res = await firebase.auth().signInWithPopup(providerGoogle);
+      const { email, displayName } = res.user;
+      const singedInUser = {
+        isSignIn: true,
+        name: displayName,
+        email: email,
+      };
+      setUserData(singedInUser);
+    } catch (err) {
+      console.warn(err);
+    }
+  };
   return (
     <Container className="googleLogin">
       <Row>
@@ -22,8 +47,7 @@ const GoogleLogin = () => {
                 <h1>Login With</h1>
               </Card.Title>
               <Card.Text>
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
+                <Button onClick={handleGoogleSignIn}>I ma google</Button>
               </Card.Text>
             </Card.Body>
           </Card>

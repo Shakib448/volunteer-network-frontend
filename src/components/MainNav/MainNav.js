@@ -37,15 +37,14 @@ const MainNav = () => {
           </Navbar.Brand>
         </NavLink>
         <Nav className="ml-auto font-weight-bold text-white">
-          <Nav.Link>
-            <NavLink
-              className="mr-3 text-dark"
-              style={{ textDecoration: "none" }}
-              to="/"
-            >
-              Home
-            </NavLink>
-          </Nav.Link>
+          <NavLink
+            className="mr-3 mt-2 text-dark"
+            style={{ textDecoration: "none" }}
+            to="/"
+          >
+            Home
+          </NavLink>
+
           <Nav.Link className="mr-3 text-dark">Donation</Nav.Link>
 
           <Nav.Link className="mr-3 text-dark">Events</Nav.Link>
