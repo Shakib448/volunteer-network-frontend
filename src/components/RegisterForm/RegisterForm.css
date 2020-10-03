@@ -7,3 +7,15 @@
   border: none;
   box-shadow: 5px 5px 40px lightgray;
 }
+
+.form__focus {
+  padding: 25px;
+  color: black;
+  border: none;
+  background: rgba(211, 211, 211, 0.5);
+}
+
+.form__focus:focus {
+  outline-color: none;
+  box-shadow: none;
+}

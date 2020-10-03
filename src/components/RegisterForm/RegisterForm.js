@@ -32,6 +32,7 @@ const RegisterForm = () => {
                     name="name"
                     type="text"
                     placeholder="Full Name "
+                    className="form__focus"
                     ref={register({
                       required: "Name is required",
                       pattern: {
@@ -53,6 +54,7 @@ const RegisterForm = () => {
                     name="email"
                     type="text"
                     placeholder="Your Email"
+                    className=" form__focus"
                     ref={register({
                       required: "Email is required",
                       pattern: {
@@ -70,6 +72,7 @@ const RegisterForm = () => {
                     name="date"
                     type="text"
                     placeholder="Date"
+                    className=" form__focus"
                     ref={register({
                       required: "Date is required",
                       pattern: {
@@ -87,6 +90,7 @@ const RegisterForm = () => {
                     name="description"
                     type="text"
                     placeholder="Description"
+                    className=" form__focus"
                     ref={register({
                       required: "Description is required",
                       pattern: /([a-zA-Z])\w+/,
@@ -106,6 +110,7 @@ const RegisterForm = () => {
                     type="text"
                     readOnly
                     defaultValue="Organize Book at the end"
+                    className=" form__focus"
                     ref={register({
                       required: "Description is required",
                       pattern: /([a-zA-Z])\w+/,
