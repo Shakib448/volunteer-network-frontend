@@ -13,23 +13,24 @@ const MainNav = () => {
   console.log("Navbar", userData);
 
   useEffect(() => {
-    try {
-      window.addEventListener(
-        "scroll",
-        () => {
+    let isCancelled = true; // Unmount error hanlde
+    const handleScroll = () => {
+      try {
+        window.addEventListener("scroll", () => {
           if (window.scrollY > 100) {
             handleShow(true);
           } else handleShow(false);
-        },
-        3000 // This method added for unmount error handle
-      );
-      return () => {
-        // This null functionality added for if the scroll is okh then scroll or otherwise the scroll will null
-        window.addEventListener("scroll", null);
-      };
-    } catch (error) {
-      console.log(error);
-    }
+        });
+        return () => {
+          // This null functionality added for if the scroll is okh then scroll or otherwise the scroll will null
+          window.addEventListener("scroll", null);
+          isCancelled = true;
+        };
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    handleScroll();
   }, []);
   return (
     <Navbar
@@ -69,6 +70,13 @@ const MainNav = () => {
               <Nav.Link className="mr-3 text-dark">
                 {userData.name}
               </Nav.Link>{" "}
+              <Button
+                variant="outline-info"
+                className="mr-3"
+                onClick={() => setUserData({})}
+              >
+                Log out
+              </Button>
             </>
           ) : (
             <>
