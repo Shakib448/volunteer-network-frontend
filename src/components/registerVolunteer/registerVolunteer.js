@@ -9,47 +9,21 @@ const registerVolunteer = () => {
       <Row>
         <Col md={6} xs={6}>
           <div
-            className="
-card"
+            className="card"
             style={{
               width: "500px",
               border: "none",
               boxShadow: "5px 5px 40px lightgray",
             }}
           >
-            <div
-              className="
-row no-gutters"
-            >
-              <div
-                className="
-col-sm-5"
-              >
-                <img
-                  className="
-card-img"
-                  src={test}
-                  alt="Suresh Dasari Card"
-                />
+            <div className="row no-gutters">
+              <div className="col-sm-5">
+                <img className="card-img" src={test} alt="Suresh Dasari Card" />
               </div>
-              <div
-                className="
-col-sm-7"
-              >
-                <div
-                  className="
-card-body"
-                >
-                  <h5
-                    className="
-card-title"
-                  >
-                    Suresh Dasari
-                  </h5>
-                  <p
-                    className="
-card-text"
-                  >
+              <div className="col-sm-7">
+                <div className="card-body">
+                  <h5 className="card-title">Suresh Dasari</h5>
+                  <p className="card-text">
                     Suresh Dasari is a founder and technical lead developer in
                     tutlane.
                   </p>

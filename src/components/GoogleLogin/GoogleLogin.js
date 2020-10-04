@@ -7,10 +7,16 @@ import logo from "../Resource/logos/Group 1329.png";
 import firebaseConfig from "../FirebaseConfig/FirebaseConfig";
 import { userInformationData } from "../../App";
 import google from "../Resource/logos/google.png";
+import { useHistory, useLocation } from "react-router-dom";
 
 firebase.initializeApp(firebaseConfig);
 
 const GoogleLogin = () => {
+  //Location
+  let history = useHistory();
+  let location = useLocation();
+
+  let { from } = location.state || { from: { pathname: "/" } };
   const [userData, setUserData] = useContext(userInformationData);
 
   const providerGoogle = new firebase.auth.GoogleAuthProvider();
@@ -25,6 +31,7 @@ const GoogleLogin = () => {
         email: email,
       };
       setUserData(singedInUser);
+      history.replace(from);
     } catch (err) {
       console.warn(err);
     }

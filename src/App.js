@@ -8,6 +8,7 @@ import GoogleLogin from "./components/GoogleLogin/GoogleLogin";
 import RegisterForm from "./components/RegisterForm/RegisterForm";
 import NotFound from "./components/NotFound/NotFound";
 import registerVolunteer from "./components/registerVolunteer/registerVolunteer";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 
 export const userInformationData = createContext();
 
@@ -22,12 +23,15 @@ function App() {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/google-sign-in" component={GoogleLogin} />
-            <Route exact path="/register" component={RegisterForm} />
+            <PrivateRoute>
+              <Route exact path="/register" component={RegisterForm} />
+            </PrivateRoute>
             <Route
               exact
               path="/register-volunteer"
               component={registerVolunteer}
             />
+
             <Route exact path="*" component={NotFound} />
           </Switch>
         </Router>
