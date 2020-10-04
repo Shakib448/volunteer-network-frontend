@@ -12,7 +12,6 @@ const RegisterForm = () => {
   const [userData, setUserData] = useContext(userInformationData);
 
   const [registerData, setRegisterData] = useState({});
-  console.log(userData);
 
   const history = useHistory();
 

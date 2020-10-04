@@ -1,19 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./MainNav.css";
 import logo from "../Resource/logos/Group 1329.png";
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
+import { userInformationData } from "../../App";
 
 const MainNav = () => {
   const [show, handleShow] = useState(false);
 
+  const [userData, setUserData] = useContext(userInformationData);
+
+  console.log("Navbar", userData);
+
   useEffect(() => {
     try {
-      window.addEventListener("scroll", () => {
-        if (window.scrollY > 100) {
-          handleShow(true);
-        } else handleShow(false);
-      });
+      window.addEventListener(
+        "scroll",
+        () => {
+          if (window.scrollY > 100) {
+            handleShow(true);
+          } else handleShow(false);
+        },
+        3000 // This method added for unmount error handle
+      );
       return () => {
         // This null functionality added for if the scroll is okh then scroll or otherwise the scroll will null
         window.addEventListener("scroll", null);
@@ -21,7 +30,7 @@ const MainNav = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [show]);
+  }, []);
   return (
     <Navbar
       bg={`${show && "light"}`}
@@ -54,14 +63,25 @@ const MainNav = () => {
 
           <Nav.Link className="mr-3 text-dark">Events</Nav.Link>
           <Nav.Link className="mr-3 text-dark">Blog</Nav.Link>
-          <NavLink to="/google-sign-in">
-            <Button className=" mr-3">Register</Button>
-          </NavLink>
-          <NavLink to="/">
-            <Button variant="secondary" className=" mr-3" type="submit">
-              Admin
-            </Button>
-          </NavLink>
+          {userData.email ? (
+            <>
+              {" "}
+              <Nav.Link className="mr-3 text-dark">
+                {userData.name}
+              </Nav.Link>{" "}
+            </>
+          ) : (
+            <>
+              <NavLink to="/google-sign-in">
+                <Button className=" mr-3">Register</Button>
+              </NavLink>
+              <NavLink to="/">
+                <Button variant="secondary" className=" mr-3" type="submit">
+                  Admin
+                </Button>
+              </NavLink>
+            </>
+          )}
         </Nav>
       </Container>
     </Navbar>
