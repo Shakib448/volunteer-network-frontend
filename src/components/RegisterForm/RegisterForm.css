@@ -18,4 +18,25 @@
 .form__focus:focus {
   outline-color: none;
   box-shadow: none;
+  border-bottom: 1px solid black;
+  border-width: 0 0 1px;
+}
+
+.form__focusDefault {
+  padding: 25px;
+  color: black;
+  border: none;
+  background: rgba(211, 211, 211, 0.5);
+}
+
+.form__focusDefault:focus {
+  outline-color: none;
+  box-shadow: none;
+}
+
+.registerForm__button {
+  text-align: center;
+}
+.registerForm__btn {
+  padding: 3% 40%;
 }

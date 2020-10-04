@@ -26,7 +26,7 @@ const RegisterForm = () => {
               <Card.Title>
                 <h1>Register as a Volunteer</h1>
               </Card.Title>
-              <Form onSubmit={handleSubmit(onSubmit)}>
+              <Form onSubmit={handleSubmit(onSubmit)} className="text-center">
                 <Form.Group>
                   <Form.Control
                     name="name"
@@ -110,7 +110,7 @@ const RegisterForm = () => {
                     type="text"
                     readOnly
                     defaultValue="Organize Book at the end"
-                    className=" form__focus"
+                    className=" form__focusDefault"
                     ref={register({
                       required: "Description is required",
                       pattern: /([a-zA-Z])\w+/,
@@ -120,7 +120,11 @@ const RegisterForm = () => {
                     {errors.title && errors.title.message}
                   </span>
                 </Form.Group>
-                <Button variant="primary" type="submit">
+                <Button
+                  className="registerForm__btn"
+                  variant="primary"
+                  type="submit"
+                >
                   Registration
                 </Button>
               </Form>
