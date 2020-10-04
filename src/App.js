@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import GoogleLogin from "./components/GoogleLogin/GoogleLogin";
 import RegisterForm from "./components/RegisterForm/RegisterForm";
 import NotFound from "./components/NotFound/NotFound";
+import registerVolunteer from "./components/registerVolunteer/registerVolunteer";
 
 export const userInformationData = createContext();
 
@@ -22,6 +23,11 @@ function App() {
             <Route exact path="/" component={Home} />
             <Route exact path="/google-sign-in" component={GoogleLogin} />
             <Route exact path="/register" component={RegisterForm} />
+            <Route
+              exact
+              path="/register-volunteer"
+              component={registerVolunteer}
+            />
             <Route exact path="*" component={NotFound} />
           </Switch>
         </Router>
