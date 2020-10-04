@@ -15,6 +15,7 @@ const MainNav = () => {
         } else handleShow(false);
       });
       return () => {
+        // This null functionality added for if the scroll is okh then scroll or otherwise the scroll will null
         window.addEventListener("scroll", null);
       };
     } catch (error) {
