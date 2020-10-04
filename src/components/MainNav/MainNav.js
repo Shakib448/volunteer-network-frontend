@@ -2,31 +2,25 @@ import React, { useEffect, useState } from "react";
 import "./MainNav.css";
 import logo from "../Resource/logos/Group 1329.png";
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const MainNav = () => {
   const [show, handleShow] = useState(false);
-  // const location = useLocation();
 
-  // const [test, setTest] = useState(location.pathname);
-
-  // const loc = (pathname) => {
-  //   if (pathname === "/") {
-  //     setTest(pathname);
-  //   }
-  // };
-
-  // console.log(test);
   useEffect(() => {
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 100) {
-        handleShow(true);
-      } else handleShow(false);
-    });
-    return () => {
-      window.addEventListener("scroll");
-    };
-  }, []);
+    try {
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 100) {
+          handleShow(true);
+        } else handleShow(false);
+      });
+      return () => {
+        window.addEventListener("scroll", null);
+      };
+    } catch (error) {
+      console.log(error);
+    }
+  }, [show]);
   return (
     <Navbar
       bg={`${show && "light"}`}

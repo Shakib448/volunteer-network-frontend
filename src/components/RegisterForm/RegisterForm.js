@@ -1,13 +1,27 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
 import logo from "../Resource/logos/Group 1329.png";
 import "./RegisterForm.css";
 import { useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
+import { userInformationData } from "../../App";
 
 const RegisterForm = () => {
   const { register, errors, handleSubmit } = useForm({});
+
+  const [userData, setUserData] = useContext(userInformationData);
+
+  const [registerData, setRegisterData] = useState({});
+  console.log(userData);
+
+  const history = useHistory();
+
+  const registerVolunteerRoute = () => {
+    history.push("/register-volunteer");
+  };
+
   const onSubmit = (data) => {
-    console.log(data);
+    setUserData({ ...userData, registerData: data });
   };
   return (
     <Container className="registerForm">
@@ -31,7 +45,7 @@ const RegisterForm = () => {
                   <Form.Control
                     name="name"
                     type="text"
-                    placeholder="Full Name "
+                    defaultValue={userData.name}
                     className="form__focus"
                     ref={register({
                       required: "Name is required",
@@ -53,13 +67,13 @@ const RegisterForm = () => {
                   <Form.Control
                     name="email"
                     type="text"
-                    placeholder="Your Email"
-                    className=" form__focus"
+                    defaultValue={userData.email}
+                    className="form__focus"
                     ref={register({
                       required: "Email is required",
                       pattern: {
                         value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
-                        message: 'Email should be "@" & ".com" ',
+                        message: 'Email should be "@" & "." ',
                       },
                     })}
                   />
