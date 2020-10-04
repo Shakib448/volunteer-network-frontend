@@ -10,8 +10,6 @@ const MainNav = () => {
 
   const [userData, setUserData] = useContext(userInformationData);
 
-  console.log("Navbar", userData);
-
   useEffect(() => {
     let isCancelled = true; // Unmount error hanlde
     const handleScroll = () => {
