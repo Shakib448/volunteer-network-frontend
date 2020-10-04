@@ -1,23 +1,25 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import "./GoogleLogin.css";
 import logo from "../Resource/logos/Group 1329.png";
 import firebaseConfig from "../FirebaseConfig/FirebaseConfig";
-import { userInformationData } from "../../App";
+import { userInformationData, userInformationRoute } from "../../App";
 import google from "../Resource/logos/google.png";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory, useLocation, useParams } from "react-router-dom";
 
 firebase.initializeApp(firebaseConfig);
 
 const GoogleLogin = () => {
+  const [userData, setUserData] = useContext(userInformationData);
+  const [userRoute, setUserRoute] = useContext(userInformationRoute);
+
   //Location
   let history = useHistory();
   let location = useLocation();
 
   let { from } = location.state || { from: { pathname: "/" } };
-  const [userData, setUserData] = useContext(userInformationData);
 
   const providerGoogle = new firebase.auth.GoogleAuthProvider();
 
@@ -27,9 +29,10 @@ const GoogleLogin = () => {
       const { email, displayName } = res.user;
       const singedInUser = {
         isSignIn: true,
-        name: displayName,
         email: email,
+        name: displayName,
       };
+
       setUserData(singedInUser);
       history.replace(from);
     } catch (err) {
@@ -51,7 +54,7 @@ const GoogleLogin = () => {
           <Card className="google__form">
             <Card.Body className="google__formBody">
               <Card.Title>
-                <h1>Login With</h1>
+                <h1>Login With </h1>
               </Card.Title>
               <Card.Text>
                 <Button

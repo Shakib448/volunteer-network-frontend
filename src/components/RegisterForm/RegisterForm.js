@@ -1,15 +1,28 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
 import logo from "../Resource/logos/Group 1329.png";
 import "./RegisterForm.css";
 import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
-import { userInformationData } from "../../App";
+import { useHistory, useParams } from "react-router-dom";
+import { userInformationData, userInformationRoute } from "../../App";
+import volunteerData from "../FakeData/FakeData";
 
 const RegisterForm = () => {
   const { register, errors, handleSubmit } = useForm({});
 
   const [userData, setUserData] = useContext(userInformationData);
+  const [userRoute, setUserRoute] = useContext(userInformationRoute);
+  const [volunteer, setVolunteer] = useState([]);
+
+  let { id } = useParams();
+
+  const findVolunteer = volunteerData.find((data) => data.id == userRoute.id);
+
+  console.log("Find me", findVolunteer);
+
+  useEffect(() => {
+    setVolunteer(findVolunteer);
+  }, [findVolunteer]);
 
   const [registerData, setRegisterData] = useState({});
 
@@ -20,7 +33,10 @@ const RegisterForm = () => {
   };
 
   const onSubmit = (data) => {
-    setUserData({ ...userData, registerData: data });
+    setUserData({
+      ...userData,
+      registerData: data,
+    });
   };
   return (
     <Container className="registerForm">
@@ -37,7 +53,7 @@ const RegisterForm = () => {
           <Card className="registerForm__card">
             <Card.Body>
               <Card.Title>
-                <h1>Register as a Volunteer</h1>
+                <h1>Register as a Volunteer </h1>
               </Card.Title>
               <Form onSubmit={handleSubmit(onSubmit)} className="text-center">
                 <Form.Group>
@@ -122,7 +138,7 @@ const RegisterForm = () => {
                     name="title"
                     type="text"
                     readOnly
-                    defaultValue="Organize Book at the end"
+                    defaultValue={volunteer.title}
                     className=" form__focusDefault"
                     ref={register({
                       required: "Description is required",

@@ -11,7 +11,7 @@ const MainNav = () => {
   const [userData, setUserData] = useContext(userInformationData);
 
   useEffect(() => {
-    let isCancelled = true; // Unmount error hanlde
+    let isCancelled = true;
     const handleScroll = () => {
       try {
         window.addEventListener("scroll", () => {
@@ -22,7 +22,7 @@ const MainNav = () => {
         return () => {
           // This null functionality added for if the scroll is okh then scroll or otherwise the scroll will null
           window.addEventListener("scroll", null);
-          isCancelled = true;
+          isCancelled = false;
         };
       } catch (error) {
         console.log(error);

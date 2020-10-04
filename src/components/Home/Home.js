@@ -1,13 +1,29 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
 import "./Home.css";
 import volunteerData from "../FakeData/FakeData";
-import MainNav from "../MainNav/MainNav";
+import { userInformationData, userInformationRoute } from "../../App";
+import { useHistory } from "react-router-dom";
 
 const Home = () => {
+  const [userRoute, setUserRoute] = useContext(userInformationRoute);
+
+  console.log("CheckData", userRoute);
+
+  const [title, setTitle] = useState({});
+
+  const history = useHistory();
+
+  const handleRegister = (id) => {
+    history.push(`/register`);
+  };
+
+  const handleTest = (title, img, id) => {
+    setUserRoute({ title, img, id });
+  };
+
   return (
     <>
-      {/* <MainNav /> */}
       <div className="home">
         <Container fluid>
           <Row>
@@ -42,7 +58,15 @@ const Home = () => {
         <Container>
           <Row>
             {volunteerData.map(({ title, img, id, color }) => (
-              <Col style={{ cursor: "pointer" }} md={3} key={id}>
+              <Col
+                onClick={() => {
+                  handleTest(title, img, id);
+                  handleRegister();
+                }}
+                style={{ cursor: "pointer" }}
+                md={3}
+                key={id}
+              >
                 <Card
                   style={{
                     width: "16rem",
