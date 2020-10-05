@@ -4,13 +4,15 @@ import logo from "../Resource/logos/Group 1329.png";
 import "./RegisterForm.css";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
-import { userInformationData, userInformationRoute } from "../../App";
+import { userInformationData, userInformationEvent } from "../../App";
 
 const RegisterForm = () => {
   const { register, errors, handleSubmit } = useForm({});
 
   const [userData, setUserData] = useContext(userInformationData);
-  const [userRoute, setUserRoute] = useContext(userInformationRoute);
+  const [eventInfo, setEventInfo] = useContext(userInformationEvent);
+
+  // console.log(userRoute._id);
 
   const [registerData, setRegisterData] = useState({});
 
@@ -25,7 +27,11 @@ const RegisterForm = () => {
   const onSubmit = (data) => {
     setRegisterData({
       ...userData,
-      ...userRoute,
+      volunteerInfo: {
+        img: eventInfo.img,
+        title: eventInfo.title,
+        id: eventInfo._id,
+      },
       registerData: data,
     });
   };
@@ -129,7 +135,7 @@ const RegisterForm = () => {
                     name="title"
                     type="text"
                     readOnly
-                    defaultValue={userRoute.title}
+                    defaultValue={eventInfo.title}
                     className=" form__focusDefault"
                     ref={register({
                       required: "Description is required",

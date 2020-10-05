@@ -16,16 +16,16 @@ import registerVolunteer from "./components/registerVolunteer/registerVolunteer"
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 
 export const userInformationData = createContext();
-export const userInformationRoute = createContext();
+export const userInformationEvent = createContext();
 
 const App = withRouter(({ location }) => {
   const [userData, setUserData] = useState({});
-  const [userRoute, setUserRoute] = useState({});
+  const [eventInfo, setEventInfo] = useState({});
 
   return (
     <div className="App">
       <userInformationData.Provider value={[userData, setUserData]}>
-        <userInformationRoute.Provider value={[userRoute, setUserRoute]}>
+        <userInformationEvent.Provider value={[eventInfo, setEventInfo]}>
           {location.pathname !== "/google-sign-in" && <MainNav /> &&
             location.pathname !== "/register" && <MainNav />}
           <Switch>
@@ -44,7 +44,7 @@ const App = withRouter(({ location }) => {
 
             <Route exact path="*" component={NotFound} />
           </Switch>
-        </userInformationRoute.Provider>
+        </userInformationEvent.Provider>
       </userInformationData.Provider>
     </div>
   );

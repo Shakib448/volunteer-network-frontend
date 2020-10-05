@@ -2,17 +2,16 @@ import React, { useContext, useEffect, useState } from "react";
 import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
 import "./Home.css";
 import volunteerData from "../FakeData/FakeData";
-import { userInformationData, userInformationRoute } from "../../App";
+import { userInformationData, userInformationEvent } from "../../App";
 import { useHistory } from "react-router-dom";
 import AxiosConfig from "../AxiosConfig/AxiosConfig";
 
 const Home = () => {
-  const [userRoute, setUserRoute] = useContext(userInformationRoute);
-
-  console.log(userRoute);
+  const [eventInfo, setEventInfo] = useContext(userInformationEvent);
 
   const [eventListData, setEventListData] = useState([]);
 
+  console.log(eventListData);
   const history = useHistory();
 
   const handleAddedData = async () => {
@@ -23,12 +22,6 @@ const Home = () => {
     } catch (err) {
       console.log(err);
     }
-
-    // fetch("http://localhost:5000/addVolunteerData", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify(volunteerData),
-    // });
   };
 
   useEffect(() => {
@@ -43,12 +36,12 @@ const Home = () => {
     handleLoadData();
   }, []);
 
-  const handleRegister = (id) => {
+  const handleRegister = () => {
     history.push(`/register`);
   };
 
-  const handleEventData = (title, img, id) => {
-    setUserRoute({ title, img, id });
+  const handleEventData = (title, img, _id) => {
+    setEventInfo({ title, img, _id });
   };
 
   return (
@@ -86,15 +79,15 @@ const Home = () => {
         </Container>
         <Container>
           <Row>
-            {volunteerData.map(({ title, img, id, color }) => (
+            {eventListData.map(({ title, img, _id, color }) => (
               <Col
                 onClick={() => {
-                  handleEventData(title, img, id);
+                  handleEventData(title, img, _id);
                   handleRegister();
                 }}
                 style={{ cursor: "pointer" }}
                 md={3}
-                key={id}
+                key={_id}
               >
                 <Card
                   style={{

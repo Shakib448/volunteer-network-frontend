@@ -5,7 +5,7 @@ import "firebase/auth";
 import "./GoogleLogin.css";
 import logo from "../Resource/logos/Group 1329.png";
 import firebaseConfig from "../FirebaseConfig/FirebaseConfig";
-import { userInformationData, userInformationRoute } from "../../App";
+import { userInformationData, userInformationEvent } from "../../App";
 import google from "../Resource/logos/google.png";
 import { useHistory, useLocation, useParams } from "react-router-dom";
 
@@ -13,7 +13,7 @@ firebase.initializeApp(firebaseConfig);
 
 const GoogleLogin = () => {
   const [userData, setUserData] = useContext(userInformationData);
-  const [userRoute, setUserRoute] = useContext(userInformationRoute);
+  const [eventInfo, setEventInfo] = useContext(userInformationEvent);
   //Location
   let history = useHistory();
   let location = useLocation();
