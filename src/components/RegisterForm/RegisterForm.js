@@ -18,8 +18,6 @@ const RegisterForm = () => {
 
   const findVolunteer = volunteerData.find((data) => data.id == userRoute.id);
 
-  console.log("Find me", findVolunteer);
-
   useEffect(() => {
     setVolunteer(findVolunteer);
   }, [findVolunteer]);
@@ -150,6 +148,7 @@ const RegisterForm = () => {
                   </span>
                 </Form.Group>
                 <Button
+                  onClick={() => registerVolunteerRoute()}
                   className="registerForm__btn"
                   variant="primary"
                   type="submit"

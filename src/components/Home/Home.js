@@ -4,18 +4,27 @@ import "./Home.css";
 import volunteerData from "../FakeData/FakeData";
 import { userInformationData, userInformationRoute } from "../../App";
 import { useHistory } from "react-router-dom";
+import AxiosConfig from "../AxiosConfig/AxiosConfig";
 
 const Home = () => {
   const [userRoute, setUserRoute] = useContext(userInformationRoute);
-
-  console.log("CheckData", userRoute);
 
   const [title, setTitle] = useState({});
 
   const history = useHistory();
 
-  const handleRegister = (id) => {
-    history.push(`/register`);
+  const handleAddedData = async () => {
+    try {
+      await AxiosConfig.post("/addVolunteerData", {
+        data: volunteerData[0],
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleRegister = () => {
+    // history.push(`/register`);
   };
 
   const handleTest = (title, img, id) => {
@@ -85,6 +94,7 @@ const Home = () => {
                   >
                     <Card.Title className="home__title">{title}</Card.Title>
                   </Card.Body>
+                  <Button onClick={handleAddedData}>Add Data</Button>
                 </Card>
               </Col>
             ))}

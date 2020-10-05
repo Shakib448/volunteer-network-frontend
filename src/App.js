@@ -31,14 +31,14 @@ const App = withRouter(({ location }) => {
 
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/google-sign-in" component={GoogleLogin} />
+            <Route exact path="/google-sign-in" component={GoogleLogin} />
             <PrivateRoute>
-              <Route path="/register" component={RegisterForm} />
+              <Route exact path="/register" component={RegisterForm} />
             </PrivateRoute>
             <PrivateRoute>
               <Route
                 exact
-                path="/register-volunteer/:id"
+                path="/register-volunteer"
                 component={registerVolunteer}
               />
             </PrivateRoute>
