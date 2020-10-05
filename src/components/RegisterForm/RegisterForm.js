@@ -14,6 +14,8 @@ const RegisterForm = () => {
 
   const [registerData, setRegisterData] = useState({});
 
+  console.log(registerData);
+
   const history = useHistory();
 
   const registerVolunteerRoute = () => {
@@ -21,8 +23,9 @@ const RegisterForm = () => {
   };
 
   const onSubmit = (data) => {
-    setUserData({
+    setRegisterData({
       ...userData,
+      ...userRoute,
       registerData: data,
     });
   };
@@ -137,14 +140,24 @@ const RegisterForm = () => {
                     {errors.title && errors.title.message}
                   </span>
                 </Form.Group>
-                <Button
-                  onClick={() => registerVolunteerRoute()}
-                  className="registerForm__btn"
-                  variant="primary"
-                  type="submit"
-                >
-                  Registration
-                </Button>
+
+                {!registerData.isSignIn ? (
+                  <Button
+                    className="registerForm__btn"
+                    variant="primary"
+                    type="submit"
+                  >
+                    Registration
+                  </Button>
+                ) : (
+                  <Button
+                    onClick={registerVolunteerRoute}
+                    className="registerForm__btn"
+                    variant="outline-success"
+                  >
+                    Welcome Volunteer
+                  </Button>
+                )}
               </Form>
             </Card.Body>
           </Card>
