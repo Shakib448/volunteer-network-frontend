@@ -28,7 +28,6 @@ const App = withRouter(({ location }) => {
         <userInformationRoute.Provider value={[userRoute, setUserRoute]}>
           {location.pathname !== "/google-sign-in" && <MainNav /> &&
             location.pathname !== "/register" && <MainNav />}
-
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/google-sign-in" component={GoogleLogin} />

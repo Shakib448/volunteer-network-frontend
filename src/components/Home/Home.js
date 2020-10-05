@@ -9,6 +9,8 @@ import AxiosConfig from "../AxiosConfig/AxiosConfig";
 const Home = () => {
   const [userRoute, setUserRoute] = useContext(userInformationRoute);
 
+  console.log(userRoute);
+
   const [eventListData, setEventListData] = useState([]);
 
   const history = useHistory();
@@ -41,11 +43,11 @@ const Home = () => {
     handleLoadData();
   }, []);
 
-  const handleRegister = () => {
+  const handleRegister = (id) => {
     history.push(`/register`);
   };
 
-  const handleTest = (title, img, id) => {
+  const handleEventData = (title, img, id) => {
     setUserRoute({ title, img, id });
   };
 
@@ -84,10 +86,10 @@ const Home = () => {
         </Container>
         <Container>
           <Row>
-            {eventListData.map(({ title, img, id, color }) => (
+            {volunteerData.map(({ title, img, id, color }) => (
               <Col
                 onClick={() => {
-                  handleTest(title, img, id);
+                  handleEventData(title, img, id);
                   handleRegister();
                 }}
                 style={{ cursor: "pointer" }}

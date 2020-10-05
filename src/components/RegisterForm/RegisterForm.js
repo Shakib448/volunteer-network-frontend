@@ -3,24 +3,14 @@ import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
 import logo from "../Resource/logos/Group 1329.png";
 import "./RegisterForm.css";
 import { useForm } from "react-hook-form";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { userInformationData, userInformationRoute } from "../../App";
-import volunteerData from "../FakeData/FakeData";
 
 const RegisterForm = () => {
   const { register, errors, handleSubmit } = useForm({});
 
   const [userData, setUserData] = useContext(userInformationData);
   const [userRoute, setUserRoute] = useContext(userInformationRoute);
-  const [volunteer, setVolunteer] = useState([]);
-
-  let { id } = useParams();
-
-  const findVolunteer = volunteerData.find((data) => data.id == userRoute.id);
-
-  useEffect(() => {
-    setVolunteer(findVolunteer);
-  }, [findVolunteer]);
 
   const [registerData, setRegisterData] = useState({});
 
@@ -136,7 +126,7 @@ const RegisterForm = () => {
                     name="title"
                     type="text"
                     readOnly
-                    defaultValue={volunteer.title}
+                    defaultValue={userRoute.title}
                     className=" form__focusDefault"
                     ref={register({
                       required: "Description is required",

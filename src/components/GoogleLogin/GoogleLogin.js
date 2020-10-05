@@ -14,7 +14,6 @@ firebase.initializeApp(firebaseConfig);
 const GoogleLogin = () => {
   const [userData, setUserData] = useContext(userInformationData);
   const [userRoute, setUserRoute] = useContext(userInformationRoute);
-
   //Location
   let history = useHistory();
   let location = useLocation();
@@ -34,7 +33,7 @@ const GoogleLogin = () => {
       };
 
       setUserData(singedInUser);
-      history.replace("/register");
+      history.replace(from);
     } catch (err) {
       console.warn(err);
     }
