@@ -34,7 +34,7 @@ const GoogleLogin = () => {
       };
 
       setUserData(singedInUser);
-      history.replace(from);
+      history.replace("/register");
     } catch (err) {
       console.warn(err);
     }

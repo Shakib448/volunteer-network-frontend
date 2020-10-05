@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
 import "./Home.css";
 import volunteerData from "../FakeData/FakeData";
@@ -9,7 +9,7 @@ import AxiosConfig from "../AxiosConfig/AxiosConfig";
 const Home = () => {
   const [userRoute, setUserRoute] = useContext(userInformationRoute);
 
-  const [title, setTitle] = useState({});
+  const [eventListData, setEventListData] = useState([]);
 
   const history = useHistory();
 
@@ -29,8 +29,20 @@ const Home = () => {
     // });
   };
 
+  useEffect(() => {
+    const handleLoadData = async () => {
+      try {
+        const res = await AxiosConfig.get("/events");
+        setEventListData(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    handleLoadData();
+  }, []);
+
   const handleRegister = () => {
-    // history.push(`/register`);
+    history.push(`/register`);
   };
 
   const handleTest = (title, img, id) => {
@@ -72,7 +84,7 @@ const Home = () => {
         </Container>
         <Container>
           <Row>
-            {volunteerData.map(({ title, img, id, color }) => (
+            {eventListData.map(({ title, img, id, color }) => (
               <Col
                 onClick={() => {
                   handleTest(title, img, id);
