@@ -16,11 +16,17 @@ const Home = () => {
   const handleAddedData = async () => {
     try {
       await AxiosConfig.post("/addVolunteerData", {
-        data: volunteerData[0],
+        data: volunteerData,
       });
     } catch (err) {
       console.log(err);
     }
+
+    // fetch("http://localhost:5000/addVolunteerData", {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify(volunteerData),
+    // });
   };
 
   const handleRegister = () => {
