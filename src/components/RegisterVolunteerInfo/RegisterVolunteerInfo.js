@@ -12,7 +12,7 @@ const RegisterVolunteerInfo = () => {
     try {
       await AxiosConfig.delete(`/delete/${_id}`).then((res) => {
         if (res) {
-          alert("The Backhand server is running");
+          alert("The Backhand server is running successfully 🚀  ");
           loadEvent();
         }
       });
@@ -39,8 +39,11 @@ const RegisterVolunteerInfo = () => {
 
   return (
     <Container style={{ paddingTop: "200px" }}>
-      <h3>You have {selectedEvent.length} </h3>
-
+      <div className="mb-3 text-center">
+        <Button variant="outline-secondary">
+          Total join : {selectedEvent.length}{" "}
+        </Button>
+      </div>
       <Row>
         {selectedEvent.map((event, _id) => (
           <Col key={event._id} md={6} xs={6} className="mb-4">
