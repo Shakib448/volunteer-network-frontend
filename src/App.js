@@ -19,7 +19,6 @@ export const userInformationData = createContext();
 export const userInformationEvent = createContext();
 
 const App = withRouter(({ location }) => {
-  // const App = () => {
   const [userData, setUserData] = useState({});
   const [eventInfo, setEventInfo] = useState({});
 
@@ -35,11 +34,9 @@ const App = withRouter(({ location }) => {
             <PrivateRoute exact path="/register">
               <RegisterForm />
             </PrivateRoute>
-            <PrivateRoute
-              exact
-              path="/register-volunteer"
-              component={RegisterVolunteerInfo}
-            />
+            <PrivateRoute exact path="/register-volunteer">
+              <RegisterVolunteerInfo />
+            </PrivateRoute>
             <Route exact path="*" component={NotFound} />
           </Switch>
         </userInformationEvent.Provider>
@@ -47,5 +44,4 @@ const App = withRouter(({ location }) => {
     </div>
   );
 });
-// };
 export default App;
