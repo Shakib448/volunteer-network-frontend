@@ -11,7 +11,6 @@ const Home = () => {
 
   const [eventListData, setEventListData] = useState([]);
 
-  console.log(eventListData);
   const history = useHistory();
 
   const handleAddedData = async () => {

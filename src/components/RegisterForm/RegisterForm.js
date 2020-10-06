@@ -5,6 +5,7 @@ import "./RegisterForm.css";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { userInformationData, userInformationEvent } from "../../App";
+import AxiosConfig from "../AxiosConfig/AxiosConfig";
 
 const RegisterForm = () => {
   const { register, errors, handleSubmit } = useForm({});
@@ -12,28 +13,47 @@ const RegisterForm = () => {
   const [userData, setUserData] = useContext(userInformationData);
   const [eventInfo, setEventInfo] = useContext(userInformationEvent);
 
-  // console.log(userRoute._id);
-
   const [registerData, setRegisterData] = useState({});
 
   console.log(registerData);
 
+  const [test, setTest] = useState({});
+
+  console.log("test", test);
+
   const history = useHistory();
+
+  // const handleRegister = (data) => {
+  //   const newBooking = {
+  //     id: eventInfo._id,
+  //     ...userData,
+  //     volunteerInfo: {
+  //       img: eventInfo.img,
+  //       title: eventInfo.title,
+  //     },
+  //     registerData: data,
+  //   };
+  //   setTest(newBooking);
+  // };
 
   const registerVolunteerRoute = () => {
     history.push("/register-volunteer");
   };
 
-  const onSubmit = (data) => {
-    setRegisterData({
+  const onSubmit = async (data) => {
+    const testReg = {
+      id: eventInfo._id,
       ...userData,
       volunteerInfo: {
         img: eventInfo.img,
         title: eventInfo.title,
-        id: eventInfo._id,
       },
       registerData: data,
+    };
+    await AxiosConfig.post("/selectedEvent", {
+      data: testReg,
     });
+    // setRegisterData();
   };
   return (
     <Container className="registerForm">
@@ -149,6 +169,7 @@ const RegisterForm = () => {
 
                 {!registerData.isSignIn ? (
                   <Button
+                    // onClick={() => handleRegister(onSubmit)}
                     className="registerForm__btn"
                     variant="primary"
                     type="submit"
