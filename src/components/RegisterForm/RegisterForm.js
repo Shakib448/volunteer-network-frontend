@@ -15,34 +15,14 @@ const RegisterForm = () => {
 
   const [registerData, setRegisterData] = useState({});
 
-  console.log(registerData);
-
-  const [test, setTest] = useState({});
-
-  console.log("test", test);
-
   const history = useHistory();
-
-  // const handleRegister = (data) => {
-  //   const newBooking = {
-  //     id: eventInfo._id,
-  //     ...userData,
-  //     volunteerInfo: {
-  //       img: eventInfo.img,
-  //       title: eventInfo.title,
-  //     },
-  //     registerData: data,
-  //   };
-  //   setTest(newBooking);
-  // };
 
   const registerVolunteerRoute = () => {
     history.push("/register-volunteer");
   };
 
   const onSubmit = async (data) => {
-    const testReg = {
-      id: eventInfo._id,
+    const regInfo = {
       ...userData,
       volunteerInfo: {
         img: eventInfo.img,
@@ -50,10 +30,14 @@ const RegisterForm = () => {
       },
       registerData: data,
     };
-    await AxiosConfig.post("/selectedEvent", {
-      data: testReg,
-    });
-    // setRegisterData();
+    setRegisterData(regInfo);
+    try {
+      await AxiosConfig.post("/selectedEvent", {
+        data: regInfo,
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <Container className="registerForm">

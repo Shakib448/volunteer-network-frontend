@@ -36,7 +36,7 @@ const Home = () => {
   }, []);
 
   const handleRegister = () => {
-    history.push(`/register`);
+    history.push("/register");
   };
 
   const handleEventData = (title, img, _id) => {
