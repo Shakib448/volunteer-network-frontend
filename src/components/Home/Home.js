@@ -11,23 +11,16 @@ const Home = () => {
 
   const [eventListData, setEventListData] = useState([]);
 
-  const history = useHistory();
+  const [loading, setLoading] = useState(false);
 
-  const handleAddedData = async () => {
-    try {
-      await AxiosConfig.post("/addVolunteerData", {
-        data: volunteerData,
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  const history = useHistory();
 
   useEffect(() => {
     const handleLoadData = async () => {
       try {
         const res = await AxiosConfig.get("/events");
         setEventListData(res.data);
+        setLoading(true);
       } catch (error) {
         console.log(error);
       }
@@ -78,37 +71,41 @@ const Home = () => {
         </Container>
         <Container>
           <Row>
-            {eventListData.map(({ title, img, _id, color }) => (
-              <Col
-                onClick={() => {
-                  handleEventData(title, img, _id);
-                  handleRegister();
-                }}
-                style={{ cursor: "pointer" }}
-                md={3}
-                key={_id}
-              >
-                <Card
-                  style={{
-                    width: "16rem",
-                    textAlign: "center",
-                    border: "none",
+            {loading ? (
+              eventListData.map(({ title, img, _id, color }) => (
+                <Col
+                  onClick={() => {
+                    handleEventData(title, img, _id);
+                    handleRegister();
                   }}
+                  style={{ cursor: "pointer" }}
+                  md={3}
+                  key={_id}
                 >
-                  <Card.Img variant="top" src={img} />
-                  <Card.Body
+                  <Card
                     style={{
-                      margin: "-10px 0 10px 0",
-                      backgroundColor: `${color}`,
-                      color: "white",
-                      borderRadius: "0px 0px 10px 10px",
+                      width: "16rem",
+                      textAlign: "center",
+                      border: "none",
                     }}
                   >
-                    <Card.Title className="home__title">{title}</Card.Title>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))}
+                    <Card.Img variant="top" src={img} />
+                    <Card.Body
+                      style={{
+                        margin: "-10px 0 10px 0",
+                        backgroundColor: `${color}`,
+                        color: "white",
+                        borderRadius: "0px 0px 10px 10px",
+                      }}
+                    >
+                      <Card.Title className="home__title">{title}</Card.Title>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              ))
+            ) : (
+              <h2>Loading........</h2>
+            )}
           </Row>
         </Container>
       </div>
