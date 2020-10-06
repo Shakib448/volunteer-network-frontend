@@ -12,7 +12,7 @@ const RegisterVolunteerInfo = () => {
     try {
       await AxiosConfig.delete(`/delete/${_id}`).then((res) => {
         if (res) {
-          alert("Are you sure you want to cancel this??");
+          alert("The Backhand server is running");
           loadEvent();
         }
       });

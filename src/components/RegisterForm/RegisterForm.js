@@ -82,6 +82,7 @@ const RegisterForm = () => {
                     name="email"
                     type="text"
                     defaultValue={userData.email}
+                    readOnly
                     className="form__focus"
                     ref={register({
                       required: "Email is required",
