@@ -6,28 +6,41 @@ import { userInformationData } from "../../App";
 
 const RegisterVolunteerInfo = () => {
   const [userData, setUserData] = useContext(userInformationData);
-  console.log(userData);
   const [selectedEvent, setSelectEvent] = useState([]);
 
-  console.log(selectedEvent);
+  const handleDelete = async (_id) => {
+    try {
+      await AxiosConfig.delete(`/delete/${_id}`).then((res) => {
+        if (res) {
+          alert("Are you sure you want to cancel this??");
+          loadEvent();
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
-    const loadEvent = async () => {
-      try {
-        const res = await AxiosConfig.get(
-          "/volunteer/event?email=" + userData.email
-        );
-        const data = res.data;
-        setSelectEvent(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
     loadEvent();
-  }, [userData]);
+  }, []);
+
+  const loadEvent = async () => {
+    try {
+      const res = await AxiosConfig.get(
+        "/volunteer/event?email=" + userData.email
+      );
+      const data = res.data;
+      setSelectEvent(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Container style={{ paddingTop: "200px" }}>
       <h3>You have {selectedEvent.length} </h3>
+
       <Row>
         {selectedEvent.map((event, _id) => (
           <Col key={event._id} md={6} xs={6} className="mb-4">
@@ -55,7 +68,12 @@ const RegisterVolunteerInfo = () => {
                     </h5>
                     <p className="card-text">{event.description}</p>
                     <div className="text-right">
-                      <Button variant="secondary">{event._id}</Button>
+                      <Button
+                        onClick={() => handleDelete(event._id)}
+                        variant="secondary"
+                      >
+                        Cancel
+                      </Button>
                     </div>
                   </div>
                 </div>

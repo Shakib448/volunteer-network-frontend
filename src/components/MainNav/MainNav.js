@@ -2,13 +2,19 @@ import React, { useContext, useEffect, useState } from "react";
 import "./MainNav.css";
 import logo from "../Resource/logos/Group 1329.png";
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { userInformationData } from "../../App";
 
 const MainNav = () => {
   const [show, handleShow] = useState(false);
 
   const [userData, setUserData] = useContext(userInformationData);
+
+  const history = useHistory();
+
+  const handleBackHome = () => {
+    history.push("/");
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -68,7 +74,10 @@ const MainNav = () => {
               <Button
                 variant="outline-info"
                 className="mr-3"
-                onClick={() => setUserData({})}
+                onClick={() => {
+                  handleBackHome();
+                  setUserData({});
+                }}
               >
                 Log out
               </Button>

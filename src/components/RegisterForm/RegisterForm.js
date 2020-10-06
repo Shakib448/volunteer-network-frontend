@@ -17,15 +17,9 @@ const RegisterForm = () => {
 
   const history = useHistory();
 
-  const registerVolunteerRoute = () => {
-    history.push("/register-volunteer");
-  };
-
   const onSubmit = async (data) => {
     const regInfo = {
       ...userData,
-      // googleSignIn: userData.isSignIn,
-      // googleEmail: userData.email,
       img: eventInfo.img,
       title: eventInfo.title,
       name: data.name,
@@ -166,7 +160,6 @@ const RegisterForm = () => {
                 ) : (
                   <Link to="/register-volunteer">
                     <Button
-                      // onClick={() => registerVolunteerRoute}
                       className="registerForm__btn"
                       variant="outline-success"
                     >
