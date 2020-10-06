@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import "./RegisterVolunteerInfo.css";
 import AxiosConfig from "../AxiosConfig/AxiosConfig";
@@ -23,8 +23,9 @@ const RegisterVolunteerInfo = () => {
 
   useEffect(() => {
     loadEvent();
-  }, []);
+  }, [userData.email, userData._id]);
 
+  // useEffect(() => {
   const loadEvent = async () => {
     try {
       const res = await AxiosConfig.get(
@@ -36,6 +37,9 @@ const RegisterVolunteerInfo = () => {
       console.log(error);
     }
   };
+  loadEvent();
+
+  // }, [userData]);
 
   return (
     <Container style={{ paddingTop: "200px" }}>
