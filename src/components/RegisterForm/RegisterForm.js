@@ -3,7 +3,7 @@ import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
 import logo from "../Resource/logos/Group 1329.png";
 import "./RegisterForm.css";
 import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { userInformationData, userInformationEvent } from "../../App";
 import AxiosConfig from "../AxiosConfig/AxiosConfig";
 
@@ -23,8 +23,9 @@ const RegisterForm = () => {
 
   const onSubmit = async (data) => {
     const regInfo = {
-      googleSignIn: userData.isSignIn,
-      googleEmail: userData.email,
+      ...userData,
+      // googleSignIn: userData.isSignIn,
+      // googleEmail: userData.email,
       img: eventInfo.img,
       title: eventInfo.title,
       name: data.name,
@@ -154,7 +155,7 @@ const RegisterForm = () => {
                   </span>
                 </Form.Group>
 
-                {!registerData.googleSignIn ? (
+                {!registerData.isSignIn ? (
                   <Button
                     className="registerForm__btn"
                     variant="primary"
@@ -163,13 +164,15 @@ const RegisterForm = () => {
                     Registration
                   </Button>
                 ) : (
-                  <Button
-                    onClick={registerVolunteerRoute}
-                    className="registerForm__btn"
-                    variant="outline-success"
-                  >
-                    Welcome Volunteer
-                  </Button>
+                  <Link to="/register-volunteer">
+                    <Button
+                      // onClick={() => registerVolunteerRoute}
+                      className="registerForm__btn"
+                      variant="outline-success"
+                    >
+                      Welcome Volunteer
+                    </Button>
+                  </Link>
                 )}
               </Form>
             </Card.Body>

@@ -57,7 +57,6 @@ const MainNav = () => {
           </NavLink>
 
           <Nav.Link className="mr-3 text-dark">Donation</Nav.Link>
-
           <Nav.Link className="mr-3 text-dark">Events</Nav.Link>
           <Nav.Link className="mr-3 text-dark">Blog</Nav.Link>
           {userData.email ? (

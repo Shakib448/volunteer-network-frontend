@@ -14,7 +14,7 @@ const RegisterVolunteerInfo = () => {
     const loadEvent = async () => {
       try {
         const res = await AxiosConfig.get(
-          "/volunteer/event?email=" + selectedEvent.email
+          "/volunteer/event?email=" + userData.email
         );
         const data = res.data;
         setSelectEvent(data);
@@ -23,7 +23,7 @@ const RegisterVolunteerInfo = () => {
       }
     };
     loadEvent();
-  }, []);
+  }, [userData]);
 
   return (
     <Container style={{ paddingTop: "200px" }}>
@@ -50,6 +50,9 @@ const RegisterVolunteerInfo = () => {
                 <div className="col-sm-7">
                   <div className="card-body">
                     <h5 className="card-title">{event.title}</h5>
+                    <h5 className="card-title">
+                      {new Date(event.date).toDateString("dd/mm/yy")}
+                    </h5>
                     <p className="card-text">{event.description}</p>
                     <div className="text-right">
                       <Button variant="secondary">{event._id}</Button>
