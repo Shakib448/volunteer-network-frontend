@@ -18,42 +18,42 @@ import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 export const userInformationData = createContext();
 export const userInformationEvent = createContext();
 
-const App = withRouter(({ location }) => {
-  // const App = () => {
+// const App = withRouter(({ location }) => {
+const App = () => {
   const [userData, setUserData] = useState({});
   const [eventInfo, setEventInfo] = useState({});
 
   return (
-    <div className="App">
-      {/* <Router> */}
-      <userInformationData.Provider value={[userData, setUserData]}>
-        <userInformationEvent.Provider value={[eventInfo, setEventInfo]}>
-          {location.pathname !== "/google-sign-in" && <MainNav /> &&
-            location.pathname !== "/register" && <MainNav />}
+    <userInformationData.Provider value={[userData, setUserData]}>
+      <userInformationEvent.Provider value={[eventInfo, setEventInfo]}>
+        {/* {location.pathname !== "/google-sign-in" && <MainNav /> &&
+              location.pathname !== "/register" && <MainNav />} */}
+        <div className="App">
+          <Router>
+            <MainNav />
 
-          {/* <MainNav /> */}
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/google-sign-in" component={GoogleLogin} />
+              <PrivateRoute>
+                <Route exact path="/register">
+                  <RegisterForm />
+                </Route>
+              </PrivateRoute>
+              <PrivateRoute>
+                <Route exact path="/register-volunteer">
+                  {" "}
+                  <RegisterVolunteerInfo />{" "}
+                </Route>
+              </PrivateRoute>
 
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/google-sign-in" component={GoogleLogin} />
-            {/* <PrivateRoute> */}
-            <Route exact path="/register" component={RegisterForm} />
-            {/* </PrivateRoute> */}
-            {/* <PrivateRoute> */}
-            <Route
-              exact
-              path="/register-volunteer"
-              component={RegisterVolunteerInfo}
-            />
-            {/* </PrivateRoute> */}
-
-            <Route exact path="*" component={NotFound} />
-          </Switch>
-        </userInformationEvent.Provider>
-      </userInformationData.Provider>
-      {/* </Router> */}
-    </div>
+              <Route exact path="*" component={NotFound} />
+            </Switch>
+          </Router>
+        </div>
+      </userInformationEvent.Provider>
+    </userInformationData.Provider>
   );
-});
-
+  // });
+};
 export default App;

@@ -23,12 +23,15 @@ const RegisterForm = () => {
 
   const onSubmit = async (data) => {
     const regInfo = {
-      ...userData,
-      volunteerInfo: {
-        img: eventInfo.img,
-        title: eventInfo.title,
-      },
-      registerData: data,
+      googleSignIn: userData.isSignIn,
+      googleEmail: userData.email,
+      img: eventInfo.img,
+      title: eventInfo.title,
+      name: data.name,
+      title: data.title,
+      email: data.email,
+      date: data.date,
+      description: data.description,
     };
     setRegisterData(regInfo);
     try {
@@ -151,9 +154,8 @@ const RegisterForm = () => {
                   </span>
                 </Form.Group>
 
-                {!registerData.isSignIn ? (
+                {!registerData.googleSignIn ? (
                   <Button
-                    // onClick={() => handleRegister(onSubmit)}
                     className="registerForm__btn"
                     variant="primary"
                     type="submit"

@@ -1,17 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import "./RegisterVolunteerInfo.css";
 import AxiosConfig from "../AxiosConfig/AxiosConfig";
+import { userInformationData } from "../../App";
 
 const RegisterVolunteerInfo = () => {
+  const [userData, setUserData] = useContext(userInformationData);
+  console.log(userData);
   const [selectedEvent, setSelectEvent] = useState([]);
 
   console.log(selectedEvent);
-
   useEffect(() => {
     const loadEvent = async () => {
       try {
-        const res = await AxiosConfig.get("/volunteer/event");
+        const res = await AxiosConfig.get(
+          "/volunteer/event?email=" + selectedEvent.email
+        );
         const data = res.data;
         setSelectEvent(data);
       } catch (error) {
@@ -24,10 +28,9 @@ const RegisterVolunteerInfo = () => {
   return (
     <Container style={{ paddingTop: "200px" }}>
       <h3>You have {selectedEvent.length} </h3>
-      <div></div>
       <Row>
-        {selectedEvent.map((event) => (
-          <Col md={6} xs={6} className="mb-4">
+        {selectedEvent.map((event, _id) => (
+          <Col key={event._id} md={6} xs={6} className="mb-4">
             <div
               className="card"
               style={{
@@ -40,18 +43,16 @@ const RegisterVolunteerInfo = () => {
                 <div className="col-sm-5">
                   <img
                     className="card-img img-fluid"
-                    src={event.volunteerInfo.img}
+                    src={event.img}
                     alt="Suresh Dasari Card"
                   />
                 </div>
                 <div className="col-sm-7">
                   <div className="card-body">
-                    <h5 className="card-title">{event.volunteerInfo.title}</h5>
-                    <p className="card-text">
-                      {event.registerData.description}
-                    </p>
+                    <h5 className="card-title">{event.title}</h5>
+                    <p className="card-text">{event.description}</p>
                     <div className="text-right">
-                      <Button variant="secondary">Cancel</Button>
+                      <Button variant="secondary">{event._id}</Button>
                     </div>
                   </div>
                 </div>

@@ -106,7 +106,6 @@ const Home = () => {
                   >
                     <Card.Title className="home__title">{title}</Card.Title>
                   </Card.Body>
-                  <Button onClick={handleAddedData}>Add Data</Button>
                 </Card>
               </Col>
             ))}
