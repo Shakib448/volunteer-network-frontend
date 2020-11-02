@@ -36,6 +36,8 @@ const MainNav = () => {
   }, []);
   return (
     <Navbar
+      collapseOnSelect
+      expand="lg"
       bg={`${show && "light"}`}
       className={`mainNav  ${show && "mainNav__scroll"}`}
       variant="light"
@@ -53,48 +55,51 @@ const MainNav = () => {
             />
           </Navbar.Brand>
         </NavLink>
-        <Nav className="ml-auto font-weight-bold text-white">
-          <NavLink
-            className="mr-3 mt-2 text-dark"
-            style={{ textDecoration: "none" }}
-            to="/"
-          >
-            Home
-          </NavLink>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="ml-auto font-weight-bold text-white">
+            <NavLink
+              className="mr-3 mt-2 text-dark"
+              style={{ textDecoration: "none" }}
+              to="/"
+            >
+              Home
+            </NavLink>
 
-          <Nav.Link className="mr-3 text-dark">Donation</Nav.Link>
-          <Nav.Link className="mr-3 text-dark">Events</Nav.Link>
-          <Nav.Link className="mr-3 text-dark">Blog</Nav.Link>
-          {userData.email ? (
-            <>
-              {" "}
-              <Nav.Link className="mr-3 text-dark">
-                {userData.name}
-              </Nav.Link>{" "}
-              <Button
-                variant="outline-info"
-                className="mr-3"
-                onClick={() => {
-                  handleBackHome();
-                  setUserData({});
-                }}
-              >
-                Log out
-              </Button>
-            </>
-          ) : (
-            <>
-              <NavLink to="/google-sign-in">
-                <Button className=" mr-3">Register</Button>
-              </NavLink>
-              <NavLink to="/">
-                <Button variant="secondary" className=" mr-3" type="submit">
-                  Admin
+            <Nav.Link className="mr-3 text-dark">Donation</Nav.Link>
+            <Nav.Link className="mr-3 text-dark">Events</Nav.Link>
+            <Nav.Link className="mr-3 text-dark">Blog</Nav.Link>
+            {userData.email ? (
+              <>
+                {" "}
+                <Nav.Link className="mr-3 text-dark">
+                  {userData.name}
+                </Nav.Link>{" "}
+                <Button
+                  variant="outline-info"
+                  className="mr-3"
+                  onClick={() => {
+                    handleBackHome();
+                    setUserData({});
+                  }}
+                >
+                  Log out
                 </Button>
-              </NavLink>
-            </>
-          )}
-        </Nav>
+              </>
+            ) : (
+              <>
+                <NavLink to="/google-sign-in">
+                  <Button className=" mb-3">Register</Button>
+                </NavLink>
+                <NavLink to="/">
+                  <Button variant="secondary" className=" mb-3" type="submit">
+                    Admin
+                  </Button>
+                </NavLink>
+              </>
+            )}
+          </Nav>
+        </Navbar.Collapse>
       </Container>
     </Navbar>
   );
