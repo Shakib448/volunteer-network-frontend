@@ -89,7 +89,7 @@ const MainNav = () => {
             ) : (
               <>
                 <NavLink to="/google-sign-in">
-                  <Button className=" mb-3">Register</Button>
+                  <Button className="mr-3 mb-3">Register</Button>
                 </NavLink>
                 <NavLink to="/">
                   <Button variant="secondary" className=" mb-3" type="submit">
